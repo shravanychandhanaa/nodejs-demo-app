@@ -42,8 +42,5 @@ jobs:
         with:
           # Enable pushing the image to Docker Hub.
           push: true
-          # Set the image tags. We'll use a tag based on the commit SHA for a unique version.
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/nodejs-ci-cd-demo:${{ github.sha }}
-          # Set a tag for 'latest'.
-          # If you want to use a specific version, you can replace this with a version number like v1.0.0.
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/nodejs-ci-cd-demo:latest
+          # Set the image tags. The two tags are now combined into a single, comma-separated string.
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/nodejs-ci-cd-demo:${{ github.sha }},${{ secrets.DOCKERHUB_USERNAME }}/nodejs-ci-cd-demo:latest
