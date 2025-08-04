@@ -1,0 +1,49 @@
+# Name of the workflow as it will appear in the GitHub Actions tab
+name: CI/CD Pipeline
+
+# Define the events that will trigger this workflow.
+# This workflow will run whenever there's a push to the 'main' branch.
+on:
+  push:
+    branches:
+      - main
+
+# A workflow is composed of one or more jobs.
+jobs:
+  # Define a job named 'build_and_push'.
+  # This job will build our Docker image and push it to Docker Hub.
+  build_and_push:
+    # Specify the type of runner the job will run on.
+    # 'ubuntu-latest' provides a virtual machine with Ubuntu Linux.
+    runs-on: ubuntu-latest
+
+    # The steps a job should perform.
+    steps:
+      # Step 1: Check out the repository code.
+      # The 'actions/checkout@v4' action is used to get the code from our repo.
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Step 2: Log in to Docker Hub.
+      # This step uses the 'docker/login-action@v3' action to authenticate with Docker Hub.
+      # We use GitHub Secrets to securely store our Docker Hub credentials.
+      # DOCKERHUB_USERNAME and DOCKERHUB_TOKEN must be configured in your GitHub repo settings.
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      # Step 3: Build and push the Docker image.
+      # This step uses the 'docker/build-push-action@v5' action to build the image from our Dockerfile
+      # and push it to the specified Docker Hub repository.
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          # Enable pushing the image to Docker Hub.
+          push: true
+          # Set the image tags. We'll use a tag based on the commit SHA for a unique version.
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/nodejs-ci-cd-demo:${{ github.sha }}
+          # Set a tag for 'latest'.
+          # If you want to use a specific version, you can replace this with a version number like v1.0.0.
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/nodejs-ci-cd-demo:latest

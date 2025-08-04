@@ -1,0 +1,16 @@
+This file specifies which files and directories to ignore when building the Docker image.
+Ignoring these files helps keep the image small and improves build performance.
+Ignore the node_modules directory, as we'll install dependencies inside the container.
+
+node_modules
+Ignore the logs directory.
+
+npm-debug.log
+Ignore the .env file and other local configuration files.
+
+.env
+.DS_Store
+Ignore Git-related files.
+
+.git
+.gitignore
