@@ -1,6 +1,6 @@
 CI/CD Pipeline for a Node.js Application
 
-Project Objective
+\##Project Objective
 
 
 
@@ -10,31 +10,31 @@ Technologies Used
 
 
 
-&nbsp;   Node.js: The runtime environment for the web application.
+    Node.js: The runtime environment for the web application.
 
 
 
-&nbsp;   Express: A web framework for Node.js used to build the application.
+    Express: A web framework for Node.js used to build the application.
 
 
 
-&nbsp;   Docker: Used to containerize the application, providing a consistent and isolated environment.
+    Docker: Used to containerize the application, providing a consistent and isolated environment.
 
 
 
-&nbsp;   GitHub: The code hosting platform for the repository.
+    GitHub: The code hosting platform for the repository.
 
 
 
-&nbsp;   GitHub Actions: The CI/CD tool used to automate the workflow.
+    GitHub Actions: The CI/CD tool used to automate the workflow.
 
 
 
-&nbsp;   Docker Hub: A cloud-based repository service used to store and share the Docker image.
+    Docker Hub: A cloud-based repository service used to store and share the Docker image.
 
 
 
-CI/CD Pipeline: The main.yml Workflow
+\##CI/CD Pipeline: The main.yml Workflow
 
 
 
@@ -46,19 +46,19 @@ The pipeline consists of a single job named build\_and\_push with the following 
 
 
 
-&nbsp;   Checkout repository: Fetches the latest code from the GitHub repository.
+    Checkout repository: Fetches the latest code from the GitHub repository.
 
 
 
-&nbsp;   Log in to Docker Hub: Authenticates with Docker Hub using securely stored GitHub Secrets (DOCKERHUB\_USERNAME and DOCKERHUB\_TOKEN).
+    Log in to Docker Hub: Authenticates with Docker Hub using securely stored GitHub Secrets (DOCKERHUB\_USERNAME and DOCKERHUB\_TOKEN). (The Docker Hub credentials (DOCKERHUB\_USERNAME and DOCKERHUB\_TOKEN) are securely stored as GitHub Secrets to prevent them from being exposed in the workflow file.)
 
 
 
-&nbsp;   Build and push Docker image: Builds the Docker image from the Dockerfile in the repository and pushes it to Docker Hub. The image is tagged with both latest and the unique commit SHA.
+    Build and push Docker image: Builds the Docker image from the Dockerfile in the repository and pushes it to Docker Hub. The image is tagged with both latest and the unique commit SHA.
 
 
 
-Application Structure
+\##Application Structure
 
 
 
@@ -66,55 +66,55 @@ The repository contains the following key files:
 
 
 
-&nbsp;   server.js: The simple Node.js application that runs on port 3000.
+    server.js: The simple Node.js application that runs on port 3000.
 
 
 
-&nbsp;   package.json: Defines the application and its dependencies.
+    package.json: Defines the application and its dependencies.
 
 
 
-&nbsp;   package-lock.json: Ensures reproducible builds by locking dependency versions.
+    package-lock.json: Ensures reproducible builds by locking dependency versions.
 
 
 
-&nbsp;   Dockerfile: Provides instructions for building the Docker image.
+    Dockerfile: Provides instructions for building the Docker image.
 
 
 
-&nbsp;   .dockerignore: Excludes unnecessary files and folders from the Docker image to keep it small and efficient.
+    .dockerignore: Excludes unnecessary files and folders from the Docker image to keep it small and efficient.
 
 
 
-How to Run the Application
+\##How to Run the Application
 
 
 
-You can run the application locally on your machine using Docker Desktop.
+You can run the application locally on your machine using Docker Desktop. 
 
 
 
-&nbsp;   Pull the image: Pull the latest image from the Docker Hub repository. Replace your-username with your Docker Hub username.
+    Pull the image: Pull the latest image from the Docker Hub repository. Replace your-username with your Docker Hub username.
 
 
 
-&nbsp;   docker pull shravanychandhanaa/nodejs-ci-cd-demo:latest (I have included the screenshot)
+    docker pull shravanychandhanaa/nodejs-ci-cd-demo:latest (I have included the screenshot)
 
 
 
-&nbsp;   Run the container: Run the container and map port 3000 from the container to port 3000 on your local machine.
+    Run the container: Run the container and map port 3000 from the container to port 3000 on your local machine.
 
 
 
-&nbsp;   docker run -p 3000:3000 your-username/nodejs-ci-cd-demo:latest (use -d to run in detached mode)
+    docker run -p 3000:3000 your-username/nodejs-ci-cd-demo:latest (use -d to run in detached mode)
 
 
 
-&nbsp;   Access the application: Open your web browser and navigate to http://localhost:3000 to see the message. (I have included the screenshot)
+    Access the application: Open your web browser and navigate to http://localhost:3000 to see the message. (I have included the screenshot)
 
 
 
-Final Outcome
+\##Final Outcome
 
 
 
