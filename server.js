@@ -6,6 +6,12 @@ app.get('/', (req, res) => {
   res.send('Hello World from a CI/CD pipeline!');
 });
 
-app.listen(port, () => {
-  console.log(`Demo app listening at http://localhost:${port}`);
-});
+// Export the app instance so it can be imported by other modules (like tests)
+module.exports = app;
+
+// Start the server only if this file is run directly (not imported as a module)
+if (require.main === module) {
+  app.listen(port, () => {
+    console.log(`Demo app listening at http://localhost:${port}`);
+  });
+}
